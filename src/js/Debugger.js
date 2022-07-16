@@ -1,0 +1,4 @@
+function Step() {
+	MovePCDOM();
+	PipelineClock();
+}

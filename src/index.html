@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/scrollbar.css">
 	<title>EmuMips</title>
 </head>
 <body>
@@ -14,26 +15,68 @@
 	</nav>
 	<div class="main">
 		<div class="app">
-			<div class="box">
+			<div class="box disassembler">
 				<h3>Disassembler</h3>
-				<ul style="height: 100px;">
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
-					<li>0x00101003	addi $t0, $t1, 40</li>
+				<ul id="disassembler">
 				</ul>
 			</div>
-			<div class="box">
+			<div class="box pipeline">
+				<h3>Pipeline</h3>
+				<div>
+					<div id="if_div"></div>
+				</div>
+			</div>
+			<div class="box registers">
+				<h3>Registers</h3>
+				<div class="">
+					<div id="0">$zero: <span>0</span></div>
+					<div>$at: <span>0</span></div> 
+					<div>$v0: <span>0</span></div>
+					<div>$v1: <span>0</span></div>
+					<div>$a0: <span>0</span></div>
+					<div>$a1: <span>0</span></div>
+					<div>$a2: <span>0</span></div> 
+					<div>$a3: <span>0</span></div> 
+					<div>$t0: <span>0</span></div> 
+					<div>$t1: <span>0</span></div> 
+					<div>$t2: <span>0</span></div>
+					<div>$t3: <span>0</span></div>
+					<div>$t4: <span>0</span></div>
+					<div>$t5: <span>0</span></div>
+					<div>$t6: <span>0</span></div>
+					<div>$t7: <span>0</span></div>
+					<div>$s0: <span>0</span></div>
+					<div>$s1: <span>0</span></div>
+					<div>$s2: <span>0</span></div>
+					<div>$s3: <span>0</span></div>
+					<div>$s4: <span>0</span></div>
+					<div>$s5: <span>0</span></div>
+					<div>$s6: <span>0</span></div>
+					<div>$s7: <span>0</span></div>
+					<div>$t8: <span>0</span></div>
+					<div>$t9: <span>0</span></div>
+					<div>$k0: <span>0</span></div>
+					<div>$k1: <span>0</span></div>
+					<div>$gp: <span>0</span></div>
+					<div>$sp: <span>0</span></div>
+					<div>$fp: <span>0</span></div>
+					<div>$ra: <span>0</span></div>
+				</div>
+			</div>
+			<div class="box memory">
 				<h3>Memory</h3>
-				<ul style="height: 100px;">
-					<li>0x00101003	00 A0 B0 A0 B0 A0 B0 A0</li>
+				<ul id="memory" style="height: 250px;">
 				</ul>
+			</div>
+			<div class="box debugger">
+				<h3>Debugger</h3>
 			</div>
 		</div>
 	</div>
+	<script src="js/Emulator.js"></script>
 	<script src="js/Disassembler.js"></script>
+	<script src="js/UIDisassembler.js"></script>
+	<script src="js/UIPipeline.js"></script>
+	<!-- <script src="js/MemoryUI.js"></script> -->
 </body>
 </html>
