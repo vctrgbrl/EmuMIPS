@@ -37,7 +37,7 @@ function DisassemblerCreateLine(i) {
 		<div>
 			${word}
 		</div>
-		<div>
+		<div class="instruction">
 			${Disassemble(word)}
 		</div>`;
 	disDOM.appendChild(line);

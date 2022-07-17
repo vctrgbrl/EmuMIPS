@@ -13,6 +13,8 @@
 		<h1>EmuMips</h1>
 		<a href="about.html"><h3>Sobre</h3></a>
 	</nav>
+
+	<button onclick="clockPipeline()"> CLOCK </button>
 	<div class="main">
 		<div class="app">
 			<div class="box disassembler">
@@ -23,7 +25,26 @@
 			<div class="box pipeline">
 				<h3>Pipeline</h3>
 				<div>
-					<div id="if_div"></div>
+					<div style="margin: .5px;">
+						<h3>IF</h3>
+						<div id="if_div"></div>
+					</div>
+					<div style="margin: .5px;">
+						<h3>ID</h3>
+						<div id="id_div"></div>
+					</div>
+					<div style="margin: .5px;">
+						<h3>EX</h3>
+						<div id="ex_div"></div>
+					</div>
+					<div style="margin: .5px;">
+						<h3>MEM</h3>
+						<div id="mem_div"></div>
+					</div>
+					<div style="margin: .5px;">
+						<h3>WB</h3>
+						<div id="wb_div"></div>
+					</div>
 				</div>
 			</div>
 			<div class="box registers">
@@ -78,5 +99,31 @@
 	<script src="js/UIDisassembler.js"></script>
 	<script src="js/UIPipeline.js"></script>
 	<!-- <script src="js/MemoryUI.js"></script> -->
+	<script>
+		var pc_position = 0;
+		var programInstructions = document.getElementsByClassName("instruction");
+		var if_div = document.getElementById("if_div");
+		var id_div = document.getElementById("id_div");
+		var ex_div = document.getElementById("ex_div");
+		var mem_div = document.getElementById("mem_div");
+		var wb_div = document.getElementById("wb_div");
+
+		var pipelineSequence = [if_div, id_div, ex_div, mem_div, wb_div];
+
+		function clockPipeline(){
+			pipelineSequence[pipelineSequence.length-1].innerHTML = "";
+			for(let i=pipelineSequence.length-1; i>0; i--){
+				pipelineSequence[i].innerHTML = pipelineSequence[i-1].innerHTML;
+			}
+			
+			if(pc_position < programInstructions.length){
+				pipelineSequence[0].innerHTML = programInstructions[pc_position].innerHTML;
+				pc_position++;
+			}
+			else{
+				pipelineSequence[0].innerHTML = "";
+			}
+		}
+	</script>
 </body>
 </html>
