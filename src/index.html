@@ -10,7 +10,7 @@
 </head>
 <body>
 	<nav>
-		<h1>EmuMips</h1>
+		<h1 style="color: green;">EmuMips</h1>
 		<a href="about.html"><h3>Sobre</h3></a>
 	</nav>
 	<div class="main">
@@ -23,7 +23,11 @@
 			<div class="box pipeline">
 				<h3>Pipeline</h3>
 				<div>
-					<div id="if_div"></div>
+					<div id="if_div" class="stage"></div>
+					<div id="id_div" class="stage"></div>
+					<div id="exe_div" class="stage"></div>
+					<div id="mem_div" class="stage"></div>
+					<div id="wb_div" class="stage"></div>
 				</div>
 			</div>
 			<div class="box registers">
@@ -65,11 +69,15 @@
 			</div>
 			<div class="box memory">
 				<h3>Memory</h3>
-				<ul id="memory" style="height: 250px;">
+				<ul id="memory" style="height: 300px;">
 				</ul>
 			</div>
 			<div class="box debugger">
 				<h3>Debugger</h3>
+				<div>
+					<button>Step</button>
+					<input type="file" id="file_input">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -77,6 +85,7 @@
 	<script src="js/Disassembler.js"></script>
 	<script src="js/UIDisassembler.js"></script>
 	<script src="js/UIPipeline.js"></script>
-	<!-- <script src="js/MemoryUI.js"></script> -->
+	<script src="js/UIMemory.js"></script>
+	<script src="js/Debugger.js"></script>
 </body>
 </html>

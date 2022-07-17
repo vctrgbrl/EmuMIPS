@@ -22,7 +22,7 @@ nav {
 
 .app {
 	display: grid;
-	grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
+	grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1.5fr 1fr 1fr 0.5fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	padding: 0;
 	gap: 1rem;
@@ -57,6 +57,15 @@ nav {
 	display: grid;
 	grid-template-rows: 1fr;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	height: max-content;
+}
+
+.stage {
+	margin: 2px;
+	color: green;
+	height: 20px;
+	font-size: 0.5rem;
+	border: 1px solid green;
 }
 
 .registers {
@@ -85,7 +94,7 @@ nav {
 }
 
 .disassembler ul {
-	height: 200px;
+	height: 300px;
 }
 
 .disassembler .line {
@@ -93,13 +102,29 @@ nav {
 	grid-template-columns: 1fr 1fr 2fr;
 }
 
-.pc {
-	/* position:absolute; */
-	/* top: calc(37px + 15px * 0); */
-	/* left: -30px; */
-	/* size: 10px; */
-	background-color: red;
-	border: 1px dashed red;
+.if {
+	background-color: hsl( 0, 50%, 30%);
+	border: 1px dashed hsl( 0, 50%, 30%);
+}
+
+.id {
+	background-color: hsl( 51, 50%, 30%);
+	border: 1px dashed hsl( 51, 50%, 30%);
+}
+
+.exe {
+	background-color: hsl( 102, 50%, 30%);
+	border: 1px dashed hsl( 102, 50%, 30%);
+}
+
+.mem {
+	background-color: hsl( 153, 50%, 30%);
+	border: 1px dashed hsl( 153, 50%, 30%);
+}
+
+.wb {
+	background-color: hsl( 204, 50%, 30%);
+	border: 1px dashed hsl( 204, 50%, 30%);
 }
 
 .memory {

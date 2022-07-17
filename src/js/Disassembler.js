@@ -68,7 +68,7 @@ function Disassemble(instruction) {
 		func = 	(instruction & 0b000000_00000_00000_00000_00000_111111)
 
 		if (func === 0x00 || func === 0x02)
-			return `${Disassembler.inst[op][func]} ${Disassembler.regs[rd]}, ${Disassembler.regs[rt]}, ${shamt}`
+			return `${Disassembler.inst[op][func]} ${Disassembler.regs[rd]}, ${Disassembler.regs[rt]}, ${shamt.toString(16)}`
 		if (func === 0x08)
 			return `${Disassembler.inst[op][func]} ${Disassembler.regs[rs]}`
 		return `${Disassembler.inst[op][func]} ${Disassembler.regs[rd]}, ${Disassembler.regs[rs]}, ${Disassembler.regs[rt]}`
@@ -82,10 +82,10 @@ function Disassemble(instruction) {
 		if (im & 0b10000_00000_000000)
 			im |= 0b111111_11111_11111_00000_00000_000000
 		
-		return `${Disassembler.inst[op]} ${Disassembler.regs[rt]}, ${Disassembler.regs[rs]}, ${im}`
+		return `${Disassembler.inst[op]} ${Disassembler.regs[rt]}, ${Disassembler.regs[rs]}, ${im.toString(16)}`
 		
 	} else if (Disassembler.j_set.has(op)) {
-		addr = (instruction & 0b000000_11111_11111_11111_11111_111111) >> 21
-		return `${Disassembler.inst[op]} ${addr}`
+		addr = (instruction & 0b000000_11111_11111_11111_11111_111111) * 4 + 0x4ff
+		return `${Disassembler.inst[op]} ${addr.toString(16)}`
 	}
 }

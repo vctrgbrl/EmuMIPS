@@ -1,23 +1,28 @@
 const disDOM = document.getElementById("disassembler");
-let last_pc_line;
-const program = [
-	0x00011020,
-	0x00642822,
-	0x00c74024,
-	0x012a5825,
-	0x000c77c0,
-	0x001097c2,
-	0x01000008,
-	0x22d88000,
-	0x8f3b7fff,
-	0xaf9e8000,
-	0x11fffffe,
-	0x15490001,
-	0x08000003,
-	0x0c000009
-];
+let last_stage_line = [];
+let stages = ['if', 'id', 'exe', 'mem', 'wb'];
+// const program = [
+// 	0x00011020,
+// 	0x00642822,
+// 	0x00c74024,
+// 	0x012a5825,
+// 	0x000c77c0,
+// 	0x001097c2,
+// 	0x01000008,
+// 	0x22d88000,
+// 	0x8f3b7fff,
+// 	0xaf9e8000,
+// 	0x11fffffe,
+// 	0x15490001,
+// 	0x08000003,
+// 	0x0c000009
+// ];
+let loaded_program;
 
 function Int32ToHex(int = 0) {
+	if (int < 0) {
+		int *= -1;
+	}
 	let a = int.toString(16);
 	let hex = "0x";
 	for (let i = 0; i < 8 - a.length; i++)
@@ -35,7 +40,7 @@ function DisassemblerCreateLine(i) {
 			${Int32ToHex(text_region + i*4)}
 		</div>
 		<div>
-			${word}
+			${Int32ToHex(word)}
 		</div>
 		<div>
 			${Disassemble(word)}
@@ -44,24 +49,30 @@ function DisassemblerCreateLine(i) {
 }
 
 function LoadProgramIntoMemory(program) {
-	for (let i = 0; i < program.length; i++)
+	loaded_program = program
+	for (let i = 0; i < program.length; i++) {
 		StoreWord(text_region + i*4, program[i]);
+	}
 }
 
 function DisassemblerCreateAllLines() {
-	for (let i = 0; i < program.length; i++)
+	for (let i = 0; i < loaded_program.length; i++)
 		DisassemblerCreateLine(i);
 }
 
-function MovePCDOM() {
-	let i = Math.floor( (CPU.pc - 0x4FF)/4 );
-	if (last_pc_line !== undefined) {
-		last_pc_line.classList.remove("pc");
+function MoveStageDOM(stage, ix) {
+	let i = Math.floor( (ix - 0x4FF)/4 );
+
+	if (last_stage_line[stage] !== undefined) {
+		last_stage_line[stage].classList.remove(stages[stage]);
 	}
-	let id = "text_" + (text_region + i*4);
+
+	let id = "text_" + (ix);
 	let line = document.getElementById(id);
-	line.classList.add("pc");
-	last_pc_line = line;
+	if (line === null)
+		return
+	line.classList.add(stages[stage]);
+	last_stage_line[stage] = line;
 }
-LoadProgramIntoMemory(program);
-DisassemblerCreateAllLines();
+// LoadProgramIntoMemory(program);
+// DisassemblerCreateAllLines();
