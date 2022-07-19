@@ -1,3 +1,5 @@
+// Esse arquivo tem tudo à respeito da execução do programa
+
 const text_region = 0x4FF;
 const CPU = {
 	reg: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -88,7 +90,7 @@ function InstructionFetch() {
 }
 
 function InstructionDecode() {
-	instruction = CPU.pipeline.if_id.ir;
+	let instruction = CPU.pipeline.if_id.ir;
 	let pc = CPU.pipeline.if_id.pc;
 
 	let write_back = false;
@@ -109,7 +111,7 @@ function InstructionDecode() {
 	let imm = 	(instruction & 0b000000_00000_00000_11111_11111_111111)
 	if (imm & 0b10000_00000_000000)
 		imm |= 0b111111_11111_11111_00000_00000_000000
-	let addr =	(instruction & 0b000000_11111_11111_11111_11111_111111) >> 21
+	let addr =	(instruction & 0b000000_11111_11111_11111_11111_111111)
 	
 	switch (op) {
 		case 0x00:
@@ -143,11 +145,11 @@ function InstructionDecode() {
 			is_i = true;
 			break;
 		case 0x02: // J
-			CPU.pc += addr << 2;
+			CPU.pc = (addr << 2) + text_region;
 			break;
 		case 0x03: // JAL
 			CPU.reg[31] = CPU.pc;
-			CPU.pc += addr << 2;
+			CPU.pc = (addr << 2) + text_region;
 			break;
 		default:
 			break;
@@ -225,6 +227,9 @@ function WriteBack() {
 		CPU.reg[wb_dest] = wb_data;
 }
 
+/** 
+ *	Clock Principal da Pipeline
+ * */ 
 function PipelineClock() {
 	WriteBack();
 	MoveStageDOM(4, CPU.pipeline.mem_wb.pc);

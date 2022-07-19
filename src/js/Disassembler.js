@@ -85,7 +85,7 @@ function Disassemble(instruction) {
 		return `${Disassembler.inst[op]} ${Disassembler.regs[rt]}, ${Disassembler.regs[rs]}, ${im.toString(16)}`
 		
 	} else if (Disassembler.j_set.has(op)) {
-		addr = (instruction & 0b000000_11111_11111_11111_11111_111111) * 4 + 0x4ff
+		addr = ((instruction & 0b000000_11111_11111_11111_11111_111111) << 2) + text_region
 		return `${Disassembler.inst[op]} ${addr.toString(16)}`
 	}
 }
