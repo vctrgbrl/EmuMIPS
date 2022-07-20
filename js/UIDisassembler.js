@@ -19,17 +19,6 @@ let stages = ['if', 'id', 'exe', 'mem', 'wb'];
 // ];
 let loaded_program;
 
-function Int32ToHex(int = 0) {
-	if (int < 0) {
-		int *= -1;
-	}
-	let a = int.toString(16);
-	let hex = "0x";
-	for (let i = 0; i < 8 - a.length; i++)
-		hex += "0";
-	return hex + a;
-}
-
 function DisassemblerCreateLine(i) {
 	const line = document.createElement("li");
 	const word = ReadWord(text_region + i*4);
@@ -50,8 +39,17 @@ function DisassemblerCreateLine(i) {
 
 function LoadProgramIntoMemory(program) {
 	loaded_program = program
+	let x, y, z, w;
 	for (let i = 0; i < program.length; i++) {
 		StoreWord(text_region + i*4, program[i]);
+		// x = (program[i] & 0x000000FF);
+		// y = (program[i] & 0x0000FF00) >> 8;
+		// z = (program[i] & 0x00FF0000) >> 16;
+		// w = (program[i] & 0xFF000000) >> 24;
+		WriteWordMemUI(text_region + i*4, program[i], false);
+		// WriteMemUI(text_region + i*4 + 1, y);
+		// WriteMemUI(text_region + i*4 + 2, z);
+		// WriteMemUI(text_region + i*4 + 3, w);
 	}
 }
 
