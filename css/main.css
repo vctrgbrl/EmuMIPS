@@ -104,27 +104,27 @@ nav {
 
 .if {
 	background-color: hsl( 0, 50%, 30%);
-	border: 1px dashed hsl( 0, 50%, 30%);
+	/* border: 1px dashed hsl( 0, 50%, 30%); */
 }
 
 .id {
 	background-color: hsl( 51, 50%, 30%);
-	border: 1px dashed hsl( 51, 50%, 30%);
+	/* border: 1px dashed hsl( 51, 50%, 30%); */
 }
 
 .exe {
 	background-color: hsl( 102, 50%, 30%);
-	border: 1px dashed hsl( 102, 50%, 30%);
+	/* border: 1px dashed hsl( 102, 50%, 30%); */
 }
 
 .mem {
 	background-color: hsl( 153, 50%, 30%);
-	border: 1px dashed hsl( 153, 50%, 30%);
+	/* border: 1px dashed hsl( 153, 50%, 30%); */
 }
 
 .wb {
 	background-color: hsl( 204, 50%, 30%);
-	border: 1px dashed hsl( 204, 50%, 30%);
+	/* border: 1px dashed hsl( 204, 50%, 30%); */
 }
 
 .memory {
@@ -135,4 +135,33 @@ nav {
 .debugger {
 	grid-row: 2/4;
 	grid-column: 6/8;
+	padding: 1rem;
+}
+
+.debugger label {
+	background-color: black;
+	border: 1px solid green;
+	color: green;
+	display: block;
+	text-align: center;
+	margin: 1rem 0;
+}
+
+.debugger button {
+	display: inline-block;
+	width: 25%;
+	background-color: black;
+	border: 1px solid green;
+	color: green;
+}
+
+.debugger label input[type="file"] {
+	display: none;
+}
+
+.debugger > div >div {
+	display: flex;
+	margin: 1rem 0;
+	align-items: center;
+	justify-content: space-between;
 }

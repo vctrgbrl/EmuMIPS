@@ -33,38 +33,38 @@
 			<div class="box registers">
 				<h3>Registers</h3>
 				<div class="">
-					<div id="0">$zero: <span>0</span></div>
-					<div>$at: <span>0</span></div> 
-					<div>$v0: <span>0</span></div>
-					<div>$v1: <span>0</span></div>
-					<div>$a0: <span>0</span></div>
-					<div>$a1: <span>0</span></div>
-					<div>$a2: <span>0</span></div> 
-					<div>$a3: <span>0</span></div> 
-					<div>$t0: <span>0</span></div> 
-					<div>$t1: <span>0</span></div> 
-					<div>$t2: <span>0</span></div>
-					<div>$t3: <span>0</span></div>
-					<div>$t4: <span>0</span></div>
-					<div>$t5: <span>0</span></div>
-					<div>$t6: <span>0</span></div>
-					<div>$t7: <span>0</span></div>
-					<div>$s0: <span>0</span></div>
-					<div>$s1: <span>0</span></div>
-					<div>$s2: <span>0</span></div>
-					<div>$s3: <span>0</span></div>
-					<div>$s4: <span>0</span></div>
-					<div>$s5: <span>0</span></div>
-					<div>$s6: <span>0</span></div>
-					<div>$s7: <span>0</span></div>
-					<div>$t8: <span>0</span></div>
-					<div>$t9: <span>0</span></div>
-					<div>$k0: <span>0</span></div>
-					<div>$k1: <span>0</span></div>
-					<div>$gp: <span>0</span></div>
-					<div>$sp: <span>0</span></div>
-					<div>$fp: <span>0</span></div>
-					<div>$ra: <span>0</span></div>
+					<div id="reg_0">$zero: <span>0</span></div>
+					<div id="reg_1">$at: <span>0</span></div> 
+					<div id="reg_2">$v0: <span>0</span></div>
+					<div id="reg_3">$v1: <span>0</span></div>
+					<div id="reg_4">$a0: <span>0</span></div>
+					<div id="reg_5">$a1: <span>0</span></div>
+					<div id="reg_6">$a2: <span>0</span></div> 
+					<div id="reg_7">$a3: <span>0</span></div> 
+					<div id="reg_8">$t0: <span>0</span></div> 
+					<div id="reg_9">$t1: <span>0</span></div> 
+					<div id="reg_10">$t2: <span>0</span></div>
+					<div id="reg_11">$t3: <span>0</span></div>
+					<div id="reg_12">$t4: <span>0</span></div>
+					<div id="reg_13">$t5: <span>0</span></div>
+					<div id="reg_14">$t6: <span>0</span></div>
+					<div id="reg_15">$t7: <span>0</span></div>
+					<div id="reg_16">$s0: <span>0</span></div>
+					<div id="reg_17">$s1: <span>0</span></div>
+					<div id="reg_18">$s2: <span>0</span></div>
+					<div id="reg_19">$s3: <span>0</span></div>
+					<div id="reg_20">$s4: <span>0</span></div>
+					<div id="reg_21">$s5: <span>0</span></div>
+					<div id="reg_22">$s6: <span>0</span></div>
+					<div id="reg_23">$s7: <span>0</span></div>
+					<div id="reg_24">$t8: <span>0</span></div>
+					<div id="reg_25">$t9: <span>0</span></div>
+					<div id="reg_26">$k0: <span>0</span></div>
+					<div id="reg_27">$k1: <span>0</span></div>
+					<div id="reg_28">$gp: <span>0</span></div>
+					<div id="reg_29">$sp: <span>2048</span></div>
+					<div id="reg_30">$fp: <span>0</span></div>
+					<div id="reg_31">$ra: <span>0</span></div>
 				</div>
 			</div>
 			<div class="box memory">
@@ -75,17 +75,24 @@
 			<div class="box debugger">
 				<h3>Debugger</h3>
 				<div>
-					<button>Step</button>
-					<input type="file" id="file_input">
+					<label for="file_input">Choose Program
+						<input type="file" id="file_input">
+					</label>
+					<div>
+						<button onclick="DebuggerStep(event)">Step</button>
+						<button onclick="DebuggerRun(event)" id="run_stop">Run</button>
+						<button onclick="DebuggerReset(event)">Reset</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="js/UIRegisters.js"></script>
 	<script src="js/Emulator.js"></script>
+	<script src="js/UIMemory.js"></script>
 	<script src="js/Disassembler.js"></script>
 	<script src="js/UIDisassembler.js"></script>
 	<script src="js/UIPipeline.js"></script>
-	<script src="js/UIMemory.js"></script>
 	<script src="js/Debugger.js"></script>
 </body>
 </html>
