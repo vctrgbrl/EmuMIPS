@@ -23,11 +23,36 @@
 			<div class="box pipeline">
 				<h3>Pipeline</h3>
 				<div>
-					<div id="if_div" class="stage"></div>
-					<div id="id_div" class="stage"></div>
-					<div id="exe_div" class="stage"></div>
-					<div id="mem_div" class="stage"></div>
-					<div id="wb_div" class="stage"></div>
+					<div class="stage if" >
+						<h4>IF</h4>
+						<div class="">
+							<span id="if_div"></span>
+						</div>
+					</div>
+					<div class="stage id">
+						<h4>ID</h4>
+						<div class="">
+							<span id="id_div"></span>
+						</div>
+					</div>
+					<div class="stage exe">
+						<h4>EXE</h4>
+						<div class="">
+							<span id="exe_div"></span>
+						</div>
+					</div>
+					<div class="stage mem">
+						<h4>MEM</h4>
+						<div class="">
+							<span id="mem_div"></span>
+						</div>
+					</div>
+					<div class="stage wb">
+						<h4>WB</h4>
+						<div class="">
+							<span id="wb_div"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="box registers">
@@ -75,7 +100,7 @@
 			<div class="box debugger">
 				<h3>Debugger</h3>
 				<div>
-					<label for="file_input">Choose Program
+					<label for="file_input">Choose Binary Program
 						<input type="file" id="file_input">
 					</label>
 					<div>

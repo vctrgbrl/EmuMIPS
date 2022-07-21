@@ -18,6 +18,7 @@ function DebuggerStep(event) {
 		return;
 	}
 	PipelineClock();
+	UpdatePipelineUI();
 }
 
 function DebuggerRun(ev) {
@@ -27,7 +28,7 @@ function DebuggerRun(ev) {
 	}
 	if (interval === null) {
 		runDOM.textContent = "Stop";
-		interval = setInterval(PipelineClock, 1000);
+		interval = setInterval(DebuggerStep, 1000);
 	}
 	else {
 		clearInterval(interval);

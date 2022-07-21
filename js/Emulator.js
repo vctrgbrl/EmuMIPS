@@ -23,6 +23,9 @@ const CPU = {
 			wb_dest: 0,
 			wb_data: 0,
 			write_back: false
+		},
+		wb: {
+			pc:0, ir:0
 		}
 	}
 }
@@ -95,11 +98,13 @@ function InstructionDecode() {
 			alu_op = 0x20;
 			wb_dest = rt;
 			is_i = true;
+			in_b = imm;
 			break;
 		case 0x2B: // SW
 			alu_op = 0x20;
 			write_mem = true;
 			is_i = true;
+			in_b = imm;
 			break;
 		case 0x02: // J
 			CPU.pc = (addr << 2) + text_region;
@@ -125,7 +130,7 @@ function InstructionDecode() {
 	
 	CPU.pipeline.id_ex = {
 		pc, ir: instruction,
-		rt, shamt, in_a, in_b,
+		rt: CPU.reg[rt], shamt, in_a, in_b,
 		alu_op, write_back, write_mem, read_mem, wb_dest
 	};
 }
@@ -149,10 +154,10 @@ function InstructionExecution() {
 			alu_out = in_a | in_b;
 			break;
 		case 0x00:
-			alu_out = CPU.reg[rt] << shamt;
+			alu_out = rt << shamt;
 			break;
 		case 0x02:
-			alu_out = CPU.reg[rt] >> shamt;
+			alu_out = rt >> shamt;
 			break;
 		default:
 			break;
@@ -185,10 +190,13 @@ function AccessMemory() {
 }
 
 function WriteBack() {
-	let { write_back, wb_dest, wb_data } = CPU.pipeline.mem_wb;
+	let { pc, ir,write_back, wb_dest, wb_data } = CPU.pipeline.mem_wb;
 	if (write_back) {
 		CPU.reg[wb_dest] = wb_data;
 		UpdateRegister(wb_dest, wb_data, 'wb');
+	}
+	CPU.pipeline.wb = {
+		pc, ir
 	}
 }
 
